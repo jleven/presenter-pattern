@@ -1,4 +1,4 @@
-= Presenter-Rails
+= Presenter-Pattern
 
 Rails gem for enabling and enforcing the presenter pattern.
 

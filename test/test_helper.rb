@@ -1,10 +1,22 @@
 ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..'
-ENV['DB'] = 'postgresql'
+#ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..'
+#ENV['DB'] = 'postgresql'
+
+$LOAD_PATH.unshift '.test'
+$LOAD_PATH.unshift './test/app/controllers'
+
+require 'config/application'
+require 'rails/test_help'
+
+Presenter::Rails::Application.initialize!
+
+require 'application_controller'
+ApplicationController.append_view_path "test/app/views"
 
 require 'test/unit'
 require 'yaml'
 require 'active_record'
+require 'action_controller'
 require 'logger'
 
 def load_schema
@@ -34,4 +46,12 @@ def load_schema
   ActiveRecord::Base.establish_connection(config[db_adapter])
   load(File.dirname(__FILE__) + "/schema.rb")
   require File.dirname(__FILE__) + '/../rails/init'
+end
+
+class Foo < ActiveRecord::Base
+  has_many :bars
+end
+
+class Bar < ActiveRecord::Base
+  belongs_to :foo
 end

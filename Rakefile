@@ -2,9 +2,9 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('presenter-rails', '0.1.0') do |p|
+Echoe.new('presenter-pattern', '0.1.0') do |p|
   p.description   = "Enables and enforces the presenter pattern in rails"
-  p.url           = "https://github.com/jleven/presenter-rails"
+  p.url           = "https://github.com/jleven/presenter-pattern"
   p.author        = "Josh Leven"
   p.email         = "josh.leven@gmail.com"
   p.ignore_pattern = ["tmp/*", "script/*"]
