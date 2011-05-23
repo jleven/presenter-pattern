@@ -4,7 +4,7 @@ Rails gem for enabling and enforcing the presenter pattern.
 
  == Install
 
-gem install presenter-rails
+gem install presenter-pattern
 
 
 == Usage
