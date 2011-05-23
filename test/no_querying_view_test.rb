@@ -2,7 +2,7 @@ require 'test_helper'
 require 'rails/all'
 require 'action_controller/test_case'
 
-require 'presenter-rails'
+require 'presenter-pattern'
 
 class NoQueryingViewTest < Test::Unit::TestCase
   load_schema
@@ -25,7 +25,7 @@ class NoQueryingViewTest < Test::Unit::TestCase
   end
 
   def test_thick_views_fail
-    assert_raise(Presenter::Rails::IllegalDatabaseQueryFromView) do
+    assert_raise(PresenterPattern::IllegalDatabaseQueryFromView) do
       get :index
     end
   end

@@ -8,15 +8,15 @@ $LOAD_PATH.unshift './test/app/controllers'
 require 'config/application'
 require 'rails/test_help'
 
-Presenter::Rails::Application.initialize!
+PresenterPattern::Application.initialize!
 
 require 'application_controller'
 ApplicationController.append_view_path "test/app/views"
 
 require 'test/unit'
 require 'yaml'
-require 'active_record'
-require 'action_controller'
+#require 'active_record'
+#require 'action_controller'
 require 'logger'
 
 def load_schema

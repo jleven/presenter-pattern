@@ -1,4 +1,5 @@
-require './lib/presenter-rails'
+#require './lib/presenter-pattern'
+
 class ApplicationController < ActionController::Metal
-  #include Presenter
+  #include PresenterPattern
 end

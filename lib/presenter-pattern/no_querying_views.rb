@@ -5,10 +5,8 @@ rescue
 end
 
 if no_querying_views
-  module Presenter
-    module Rails
-      class IllegalDatabaseQueryFromView < RuntimeError; end
-    end
+  module PresenterPattern
+    class IllegalDatabaseQueryFromView < RuntimeError; end
   end
 
   module ::ActiveRecord
@@ -25,7 +23,7 @@ if no_querying_views
 
               # if we're coming from a view, let's analyze the situation
               if !first_view.nil? and (first_helper.nil? or (caller.index(first_view) < caller.index(first_helper)))
-                raise Presenter::Rails::IllegalDatabaseQueryFromView, "No query from view prohibited, eager-load from a controller instead."
+                raise PresenterPattern::IllegalDatabaseQueryFromView, "No query from view prohibited, eager-load from a controller instead."
               else
                 orig_execute *args
               end

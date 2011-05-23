@@ -1,1 +1,1 @@
-require 'presenter-rails'
+require 'presenter-pattern'
