@@ -1,4 +1,4 @@
-class MyController < ApplicationController
+class FoosController < ApplicationController
   def show
     @data = Foo.find(params[:id])
   end

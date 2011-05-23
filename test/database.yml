@@ -1,6 +1,0 @@
-postgresql:
-  :adapter: postgresql
-  :username: rails
-  :password: R0Rails4tw
-  :database: presenter_rails
-  :min_messages: ERROR

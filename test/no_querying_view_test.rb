@@ -1,31 +1,35 @@
 require 'test_helper'
-require 'rails/all'
-require 'action_controller/test_case'
 
-require 'presenter-pattern'
-
-class NoQueryingViewTest < Test::Unit::TestCase
-  load_schema
+class NoQueryingViewTest < ActionController::TestCase
+  tests FoosController
 
   def setup
-    @controller = MyController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    super
+    #Foo.delete_all
 
-    Rails.application.routes.draw do |map|
-      map.resources :foos
-    end
+#    @controller = FoosController.new
+#    @request    = ActionController::TestRequest.new
+#    @response   = ActionController::TestResponse.new
+
+#    PresenterPattern::Application.routes.draw do
+#      resource :foo
+#    end
+
+    @foo = Foo.create :name => "name"
   end
 
-  def test_thin_views_are_successful
-    foo = Foo.create :name => "name", :squawk => "squawk!"
+#  def teardown
+#    super
+#    Foo.delete_all
+#  end
 
-    get :show, {:id => foo.id}
+  def test_thin_views_are_successful
+    get :show, :id => @foo.id
     assert_response :success
   end
 
   def test_thick_views_fail
-    assert_raise(PresenterPattern::IllegalDatabaseQueryFromView) do
+    assert_raise(ActionView::Template::Error) do
       get :index
     end
   end
