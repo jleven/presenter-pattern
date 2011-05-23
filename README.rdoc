@@ -1,0 +1,12 @@
+= Presenter-Rails
+
+Rails gem for enabling and enforcing the presenter pattern.
+
+ == Install
+
+gem install presenter-rails
+
+
+== Usage
+
+... To Be Continued ...
