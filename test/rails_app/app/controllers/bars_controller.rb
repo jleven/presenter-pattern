@@ -1,16 +1,16 @@
-class FoosController < ApplicationController
+class BarsController < ApplicationController
   include PresenterPattern
   layout nil
 
   respond_to :html, :json
 
   def show
-    @data = Foo.find(params[:id])
+    @data = Bar.find(params[:id])
     respond_with(@data)
   end
 
   def index
-    @data = Foo
+    @data = Bar
   end
 
   def edit
