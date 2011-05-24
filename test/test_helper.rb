@@ -12,8 +12,5 @@ require 'yaml'
 require 'active_record'
 require 'logger'
 
-require File.expand_path('../rails/init', File.dirname(__FILE__))
+#require File.expand_path('../rails/init', File.dirname(__FILE__))
 
-#def app
-#  RailsApp::Application
-#end
