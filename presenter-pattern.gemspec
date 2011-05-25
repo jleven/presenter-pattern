@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{presenter-pattern}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Josh Leven"]
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{Enables and enforces the presenter pattern in rails}
   s.email = %q{josh.leven@gmail.com}
   s.extra_rdoc_files = ["README.rdoc", "lib/presenter-pattern.rb", "lib/presenter-pattern/railtie.rb"]
-  s.files = ["Gemfile", "Gemfile.lock", "README.rdoc", "Rakefile", "lib/presenter-pattern.rb", "lib/presenter-pattern/railtie.rb", "presenter-pattern.gemspec", "rails/init.rb", "test/bad_controller_test.rb", "test/foos_controller_test.rb", "test/setup_test.rb", "test/test_helper.rb", "Manifest"]
+  s.files = ["README.rdoc", "Rakefile", "lib/presenter-pattern.rb", "lib/presenter-pattern/railtie.rb", "presenter-pattern.gemspec", "rails/init.rb", "test/bad_controller_test.rb", "test/foos_controller_test.rb", "test/setup_test.rb", "test/test_helper.rb", "Manifest"]
   s.homepage = %q{https://github.com/jleven/presenter-pattern}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Presenter-pattern", "--main", "README.rdoc"]
   s.require_paths = ["lib"]

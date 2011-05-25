@@ -28,16 +28,26 @@ module PresenterPattern
       custom_api = self.dup
       custom_api.class_eval do
         define_singleton_method :included do |host_class|
-          host_class.layout nil
-          host_class.respond_to *formats
+          do_included(host_class, *formats)
         end
       end
       custom_api
     end
     
     def self.included(host_class)
+      do_included(host_class, :xml, :json)
+    end
+
+    module ClassMethods
+      def view_var_name(name)
+        @view_var_name = name.to_s
+      end
+    end
+
+    def self.do_included(host_class, *formats)
       host_class.layout nil
-      host_class.respond_to :xml, :json
+      host_class.respond_to *formats
+      host_class.extend PresenterPattern::API::ClassMethods
     end
 
     # enforces simple api response
@@ -52,6 +62,11 @@ module PresenterPattern
       #fail if action calls 'render'
       raise NoExplicitRender, "Controllers implementing the PresenterPattern::API must not call any render methods" if response_body
 
+      #set the view variable
+      name = self.class.instance_variable_get(:@view_var_name)
+      name = name.pluralize if name && method_name.to_s == "index" #pluralize the @view_var_name if it was set at the class and this is GET/index
+      @view_var_name = name || "data"
+
       #always follow responder pattern passing in the action's return value
       respond_with @__rval, (@respond_with_opts || {})
     end
@@ -63,7 +78,7 @@ module PresenterPattern
 
     #only the @__rval variable (set in send_action) is passed through to the view
     def view_assigns
-      {"data" => @__rval}
+      {@view_var_name => @__rval}
     end
   end
 end
