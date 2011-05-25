@@ -1,5 +1,4 @@
 require 'presenter-pattern/railtie'
-require 'json-builder/railtie'
 
 module PresenterPattern
   def protected_instance_variables

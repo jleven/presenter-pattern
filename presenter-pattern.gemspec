@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{presenter-pattern}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Josh Leven"]
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{presenter-pattern}
   s.rubygems_version = %q{1.7.2}
   s.summary = %q{Enables and enforces the presenter pattern in rails}
-  s.test_files = ["test/json_responder_test.rb", "test/json_view_test.rb", "test/no_querying_view_test.rb", "test/only_data_in_view_test.rb", "test/setup_test.rb", "test/test_helper.rb"]
+  s.test_files = ["test/no_querying_view_test.rb", "test/only_data_in_view_test.rb", "test/setup_test.rb", "test/test_helper.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

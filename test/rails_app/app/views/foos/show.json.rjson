@@ -1,8 +1,0 @@
-{
-  :name  => @data.name,
-  :array => ['a', 'c'],
-  :hash  => {
-    :value1 => 1,
-    :value2 => [:a, :b, :c]
-  }
-}
