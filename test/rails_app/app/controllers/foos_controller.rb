@@ -1,19 +1,37 @@
 class FoosController < ApplicationController
-  include PresenterPattern
-  layout nil
-
-  respond_to :html, :json
-
-  def show
-    @data = Foo.find(params[:id])
-    respond_with(@data)
-  end
+  include PresenterPattern::API[:html, :json]
 
   def index
-    @data = Foo
+    Foo.all
+  end
+
+  def show
+    foo
+  end
+
+  def new
+    Foo.new
+  end
+
+  def create
+    Foo.create params[:foo]
   end
 
   def edit
-    @not_data = "Can't see this in the view!"
+    respond_opts :status => 206
+    foo
+  end
+
+  def update
+    foo.update_attributes(params[:foo]) if foo
+  end
+
+  def destroy
+    foo.destroy if foo
+  end
+
+  private
+  def foo
+    @foo ||= Foo.find(params[:id])
   end
 end

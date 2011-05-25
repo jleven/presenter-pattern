@@ -13,8 +13,11 @@ RailsApp::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :foos
-  resources :bars
-
+  match 'empty'   => 'bad#empty',   :as => :empty
+  match 'query'   => 'bad#query',   :as => :query
+  match 'no_vars' => 'bad#no_vars', :as => :no_vars
+  match 'good/:id'=> 'bad#good',    :as => :good
+  match 'render'  => 'bad#explicit',:as => :explicit
   # Sample resource route with options:
   #   resources :products do
   #     member do

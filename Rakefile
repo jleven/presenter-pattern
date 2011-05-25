@@ -2,12 +2,12 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('presenter-pattern', '0.2.1') do |p|
+Echoe.new('presenter-pattern', '0.3.0') do |p|
   p.description   = "Enables and enforces the presenter pattern in rails"
   p.url           = "https://github.com/jleven/presenter-pattern"
   p.author        = "Josh Leven"
   p.email         = "josh.leven@gmail.com"
-  p.ignore_pattern = /^(tmp|pkg|doc|test\/rails_app)|(\.svn|CVS|\.bzr|\.DS|\.git)$/
+  p.ignore_pattern = /^(tmp|pkg|doc|test\/rails_app|Gemfile)|(\.svn|CVS|\.bzr|\.DS|\.git)$/
   p.development_dependencies = []
 end
 

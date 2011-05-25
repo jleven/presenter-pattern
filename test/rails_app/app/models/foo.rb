@@ -1,4 +1,6 @@
 class Foo < ActiveRecord::Base
+  validates_presence_of :name
+
   def to_json(options={})
     {
       :name  => self.name,
