@@ -1,5 +1,5 @@
 require 'presenter-pattern/railtie'
-
+require 'presenter-pattern/test_case'
 
 # PresenterPattern::API enables and enforces very simple api controllers.
 # Essentially, your controller has the settings:

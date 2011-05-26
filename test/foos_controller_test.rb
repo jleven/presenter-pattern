@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class FoosControllerTest < ActionController::TestCase
+  include PresenterPattern::TestCase
   tests FoosController
 
   def setup
@@ -57,5 +58,15 @@ class FoosControllerTest < ActionController::TestCase
     end
     assert_response :success
     assert_equal "{}", @response.body
+  end
+
+  def test_assigns_test
+    get :new
+    assert assigns(:foo)
+  end
+
+  def test_assigns_test_plural
+    get :index
+    assert assigns(:foos)
   end
 end
