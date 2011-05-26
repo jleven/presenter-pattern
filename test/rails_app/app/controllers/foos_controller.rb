@@ -25,6 +25,7 @@ class FoosController < ApplicationController
 
   def update
     foo.update_attributes(params[:foo]) if foo
+    foo
   end
 
   def destroy

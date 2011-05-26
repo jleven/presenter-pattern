@@ -45,6 +45,12 @@ class FoosControllerTest < ActionController::TestCase
     assert_equal "{\"name\":[\"can't be blank\"]}", @response.body
   end
 
+  def test_update_success
+    put :update, :id => @foo.id, :foo => {:name => "New Name"}, :format => :json
+    assert_response :success
+    assert_equal "{}", @response.body
+  end
+
   def test_respond_opts
     get :edit, :id => @foo.id, :format => :json
     assert_response 206
