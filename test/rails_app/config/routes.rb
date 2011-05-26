@@ -15,7 +15,7 @@ RailsApp::Application.routes.draw do
   resources :foos
   match 'empty'   => 'bad#empty',   :as => :empty
   match 'query'   => 'bad#query',   :as => :query
-  match 'no_vars' => 'bad#no_vars', :as => :no_vars
+  match 'vars'    => 'bad#vars',    :as => :vars
   match 'good/:id'=> 'bad#good',    :as => :good
   match 'render'  => 'bad#explicit',:as => :explicit
   # Sample resource route with options:

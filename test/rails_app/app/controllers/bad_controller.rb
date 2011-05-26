@@ -11,8 +11,8 @@ class BadController < ApplicationController
   def query
   end
 
-  def no_vars
-    @not_data = "Can't see this in the view!"
+  def vars
+    @not_data = "I can see this in the view!"
     nil
   end
 

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class FoosControllerTest < ActionController::TestCase
-  include PresenterPattern::TestCase
   tests FoosController
 
   def setup

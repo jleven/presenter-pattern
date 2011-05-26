@@ -31,7 +31,7 @@ module PresenterPattern
 
                 # if we're coming from a view, let's analyze the situation
                 if !first_view.nil? #and (first_helper.nil? or (caller.index(first_view) < caller.index(first_helper)))
-                  raise PresenterPattern::IllegalDatabaseQueryFromView, "No query from view prohibited, eager-load from a controller instead."
+                  raise PresenterPattern::IllegalDatabaseQueryFromView, "DB query from view prohibited, eager-load from a controller instead."
                 else
                   orig_execute *args
                 end

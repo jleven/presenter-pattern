@@ -1,5 +1,4 @@
 require 'presenter-pattern/railtie'
-require 'presenter-pattern/test_case'
 
 # PresenterPattern::API enables and enforces very simple api controllers.
 # Essentially, your controller has the settings:
@@ -8,7 +7,7 @@ require 'presenter-pattern/test_case'
 #
 # and each action ends with an implicit:
 #    responds_with <return_value_from_action>
-#
+# unless response created explicitly
 #
 # 1. In your controller, include PresenterPattern::API, passing in the formats your api
 #    will support using the bracket operator (defaults to :xml and :json)
@@ -16,14 +15,11 @@ require 'presenter-pattern/test_case'
 #    e.g.    include PresenterPattern::API[:html, :json]
 #
 # 2. Each action must return the data you wish for your api to return.
-#    Do NOT call render from within your actions.
 #
 
 
 module PresenterPattern
   module API
-    class NoExplicitRender < RuntimeError; end
-
     def self.[](*formats)
       custom_api = self.dup
       custom_api.class_eval do
@@ -54,31 +50,26 @@ module PresenterPattern
     #
     # each action must return the data meant for their response
     # 
-    # - overwrites ActionController::Metal::ImplicitRender
+    # - this overwrites ActionController::Metal::ImplicitRender
     def send_action(method_name, *args)
       #call the action, and store return value
-      @__rval = self.send(method_name, *args)
+      rval = self.send(method_name, *args)
 
-      #fail if action calls 'render'
-      raise NoExplicitRender, "Controllers implementing the PresenterPattern::API must not call any render methods" if response_body
+      unless response_body
+        #set the view variable with the return value
+        name = self.class.instance_variable_get(:@view_var_name)
+        name = name.pluralize if name && method_name.to_s == "index" #pluralize the @view_var_name if it was set at the class and this is GET/index
+        name ||= "data"
+        self.instance_variable_set :"@#{name}", rval
 
-      #set the view variable
-      name = self.class.instance_variable_get(:@view_var_name)
-      name = name.pluralize if name && method_name.to_s == "index" #pluralize the @view_var_name if it was set at the class and this is GET/index
-      @view_var_name = name || "data"
-
-      #always follow responder pattern passing in the action's return value
-      respond_with @__rval, (@respond_with_opts || {})
+        #always follow responder pattern passing in the action's return value unless already rendered
+        respond_with rval, (@respond_opts || {})
+      end
     end
 
     def respond_opts(options)
-      @respond_with_opts ||= {}
-      @respond_with_opts.merge! options
-    end
-
-    #only the @__rval variable (set in send_action) is passed through to the view
-    def view_assigns
-      {@view_var_name => @__rval}
+      @respond_opts ||= {}
+      @respond_opts.merge! options
     end
   end
 end
