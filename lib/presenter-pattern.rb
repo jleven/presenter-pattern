@@ -41,7 +41,6 @@ module PresenterPattern
     end
 
     def self.do_included(host_class, *formats)
-      host_class.layout nil
       host_class.respond_to *formats
       host_class.extend PresenterPattern::API::ClassMethods
     end

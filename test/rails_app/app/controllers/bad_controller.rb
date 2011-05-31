@@ -1,5 +1,6 @@
 class BadController < ApplicationController
   include PresenterPattern::API[:html, :json]
+  layout nil
 
   def good
     Foo.find(params[:id])

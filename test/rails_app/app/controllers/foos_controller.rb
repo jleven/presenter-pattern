@@ -1,5 +1,6 @@
 class FoosController < ApplicationController
   include PresenterPattern::API[:html, :json]
+  layout nil
   view_var_name :foo
 
   def index
